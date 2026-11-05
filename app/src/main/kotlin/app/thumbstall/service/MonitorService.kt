@@ -10,8 +10,12 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
 import android.util.Log
+import app.thumbstall.core.SnoozeCalc
+import app.thumbstall.core.SnoozeState
 import app.thumbstall.EssentialApps
+import app.thumbstall.ThumbStallApp
 import app.thumbstall.R
 import app.thumbstall.core.OpenTracker
 import app.thumbstall.core.OverlayGate
@@ -45,6 +49,7 @@ class MonitorService : Service() {
     private var essentialPackages: Set<String> = emptySet()
     private var pauseRules: PauseRules = PauseRules()
     private var pollCount = 0
+    private var snoozeState: SnoozeState? = null
 
     private lateinit var settingsStore: SettingsStore
     private lateinit var db: AppDatabase
@@ -85,6 +90,23 @@ class MonitorService : Service() {
                 else -> 8 // balanced
             }
             pauseRules = PauseRules(PauseConfig(basePauseSeconds = baseSeconds))
+
+            // Recalculate snooze state from persisted wall time
+            val snoozeExpiryWall = settingsStore.snoozeExpiryWallMs()
+            snoozeState = if (snoozeExpiryWall != null) {
+                val nowElapsed = SystemClock.elapsedRealtime()
+                val nowWall = System.currentTimeMillis()
+                val remainingMs = snoozeExpiryWall - nowWall
+                if (remainingMs > 0) {
+                    SnoozeState(
+                        expiryElapsedMs = nowElapsed + remainingMs,
+                        expiryWallMs = snoozeExpiryWall
+                    )
+                } else {
+                    settingsStore.clearSnooze()
+                    null
+                }
+            } else null
         }
     }
 
@@ -108,6 +130,19 @@ class MonitorService : Service() {
                 poller.poll()?.let { event ->
                     Log.d(TAG, "foreground: ${event.packageName}")
                     try {
+                        val nowElapsed = SystemClock.elapsedRealtime()
+
+                        // Skip all pauses during snooze
+                        if (SnoozeCalc.isActive(snoozeState, nowElapsed)) {
+                            return@let
+                        }
+
+                        // Skip pause if this package has active budget
+                        val budgetTracker = ThumbStallApp.get().budgetTracker
+                        if (budgetTracker.hasActiveBudget(event.packageName, nowElapsed)) {
+                            return@let
+                        }
+
                         if (!overlayGate.shouldLaunch(event, targetPackages, PauseActivity.showing)) {
                             return@let
                         }

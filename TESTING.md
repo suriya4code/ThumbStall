@@ -37,6 +37,23 @@ target Chrome so the emulator can run this list.)
 - [ ] "Nth open today" counter increments across pauses
 - [ ] "You closed it instead N times this week" appears after using Close button
 
+## Session budget
+
+- [ ] Tap a chip (5/10/15 min) after countdown → pause activity closes, app opens
+- [ ] While budget active, reopening the same app does NOT show pause
+- [ ] After budget expires, reopening the app shows pause again
+- [ ] Budget is per-app: budget on Chrome doesn't affect Instagram
+
+## Snooze
+
+- [ ] When protection is running, "Snooze" button appears on main screen
+- [ ] Snooze sheet shows 15 min / 1 hour / Until tonight with "Back on at" times
+- [ ] Selecting an option and tapping Snooze closes the sheet
+- [ ] During snooze, no apps are paused (all selected apps open normally)
+- [ ] After snooze expires, protection resumes and apps are paused again
+- [ ] "Turn off" requires typing a reason and waiting 24 seconds
+- [ ] Reboot during snooze → snooze continues, protection resumes after expiry
+
 ## Failure modes (fail open)
 
 - [ ] Screen off → polling stops (no `ThumbStall` logcat lines);
@@ -44,7 +61,7 @@ target Chrome so the emulator can run this list.)
 - [ ] Revoke Usage Access while protection is running → no crash,
       all apps open normally (protection silently off; health banner is Phase 3)
 - [ ] Phone call while the overlay is showing → overlay does not block the
-      call UI (full call handling is Phase 2)
+      call UI
 
 ## Reboot
 
