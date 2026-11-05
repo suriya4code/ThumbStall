@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
@@ -18,6 +19,7 @@ class SettingsStore(private val context: Context) {
     private val targetPackagesKey = stringSetPreferencesKey("target_packages")
     private val intensityKey = stringPreferencesKey("intensity")
     private val snoozeExpiryKey = longPreferencesKey("snooze_expiry_wall_ms")
+    private val onboardingCompleteKey = booleanPreferencesKey("onboarding_complete")
 
     suspend fun targetPackages(): Set<String> =
         context.dataStore.data.map { it[targetPackagesKey] ?: emptySet() }.first()
@@ -53,5 +55,18 @@ class SettingsStore(private val context: Context) {
      */
     suspend fun clearSnooze() {
         context.dataStore.edit { it.remove(snoozeExpiryKey) }
+    }
+
+    /**
+     * Returns true if onboarding has been completed.
+     */
+    suspend fun isOnboardingComplete(): Boolean =
+        context.dataStore.data.map { it[onboardingCompleteKey] ?: false }.first()
+
+    /**
+     * Marks onboarding as complete.
+     */
+    suspend fun setOnboardingComplete() {
+        context.dataStore.edit { it[onboardingCompleteKey] = true }
     }
 }

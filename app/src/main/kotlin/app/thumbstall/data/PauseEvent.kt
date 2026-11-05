@@ -6,12 +6,15 @@ import androidx.room.PrimaryKey
 /**
  * Records pause screen events for stats and counters.
  */
+import androidx.room.ColumnInfo
+
 @Entity(tableName = "pause_events")
 data class PauseEvent(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val packageName: String,
     val type: String,
-    val wallTimeMs: Long
+    val wallTimeMs: Long,
+    @ColumnInfo(defaultValue = "0") val pauseSeconds: Int = 0
 ) {
     companion object {
         const val TYPE_PAUSED = "paused"

@@ -157,7 +157,7 @@ class MonitorService : Service() {
                             is PauseDecision.None -> { /* pass through */ }
                             is PauseDecision.Pause -> {
                                 openTracker.recordOpen(event.packageName, event.elapsedMs)
-                                logEvent(event.packageName, PauseEvent.TYPE_PAUSED)
+                                logEvent(event.packageName, PauseEvent.TYPE_PAUSED, decision.seconds)
                                 startActivity(
                                     Intent(this@MonitorService, PauseActivity::class.java)
                                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -175,14 +175,15 @@ class MonitorService : Service() {
         }
     }
 
-    private fun logEvent(packageName: String, type: String) {
+    private fun logEvent(packageName: String, type: String, pauseSeconds: Int = 0) {
         scope.launch {
             try {
                 db.eventDao().insert(
                     PauseEvent(
                         packageName = packageName,
                         type = type,
-                        wallTimeMs = System.currentTimeMillis()
+                        wallTimeMs = System.currentTimeMillis(),
+                        pauseSeconds = pauseSeconds
                     )
                 )
             } catch (t: Throwable) {
