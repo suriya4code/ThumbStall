@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple pause-bars glyph -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M42,36 h8 v36 h-8 z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M58,36 h8 v36 h-8 z" />
+</vector>
