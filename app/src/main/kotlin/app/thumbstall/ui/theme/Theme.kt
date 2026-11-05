@@ -1,5 +1,6 @@
 package app.thumbstall.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -29,6 +30,21 @@ private val LightColors = lightColorScheme(
     onSurfaceVariant = Color(0xFF45483E),
 )
 
+private val DarkColors = darkColorScheme(
+    primary = Color(0xFF9AAF6C),  // Lighter olive for dark mode
+    onPrimary = Color(0xFF1A1C18),
+    primaryContainer = OliveDark,
+    onPrimaryContainer = Cream,
+    secondary = Color(0xFF7A8F5C),
+    onSecondary = Color(0xFF1A1C18),
+    background = Color(0xFF1A1C18),
+    onBackground = Color(0xFFE4E3DA),
+    surface = Color(0xFF1A1C18),
+    onSurface = Color(0xFFE4E3DA),
+    surfaceVariant = Color(0xFF2A2D24),
+    onSurfaceVariant = Color(0xFFB8B8A8),
+)
+
 private val PauseColors = darkColorScheme(
     primary = Cream,
     onPrimary = PauseBackground,
@@ -41,9 +57,13 @@ private val PauseColors = darkColorScheme(
 )
 
 @Composable
-fun ThumbStallTheme(content: @Composable () -> Unit) {
+fun ThumbStallTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) DarkColors else LightColors
     MaterialTheme(
-        colorScheme = LightColors,
+        colorScheme = colorScheme,
         content = content
     )
 }
