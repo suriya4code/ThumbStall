@@ -26,10 +26,13 @@ data class PermissionState(
 fun PermissionScreen(
     state: PermissionState,
     selectedAppCount: Int = 0,
+    protectionRunning: Boolean = false,
     onRequestUsageAccess: () -> Unit,
     onRequestOverlay: () -> Unit,
     onChooseApps: () -> Unit = {},
     onStartProtection: () -> Unit,
+    onStopProtection: () -> Unit = {},
+    onSnooze: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -67,12 +70,38 @@ fun PermissionScreen(
             )
         }
 
-        Button(
-            onClick = onStartProtection,
-            enabled = state.usageAccessGranted && state.overlayGranted && selectedAppCount > 0,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text("Start protection")
+        if (protectionRunning) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                OutlinedButton(
+                    onClick = onSnooze,
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text("Snooze")
+                }
+                OutlinedButton(
+                    onClick = onStopProtection,
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text("Stop")
+                }
+            }
+            Text(
+                text = "Protection is on",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        } else {
+            Button(
+                onClick = onStartProtection,
+                enabled = state.usageAccessGranted && state.overlayGranted && selectedAppCount > 0,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Start protection")
+            }
         }
     }
 }
