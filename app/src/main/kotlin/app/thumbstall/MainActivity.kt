@@ -11,6 +11,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -20,17 +21,27 @@ import app.thumbstall.data.SettingsStore
 import app.thumbstall.service.MonitorService
 import app.thumbstall.service.SnoozeScheduler
 import app.thumbstall.ui.AppPickerScreen
-import app.thumbstall.ui.PermissionScreen
+import app.thumbstall.ui.MainNavigation
+import app.thumbstall.ui.OnboardingIntensity
+import app.thumbstall.ui.OnboardingPerms
 import app.thumbstall.ui.PermissionState
 import app.thumbstall.ui.SnoozeSheet
 import app.thumbstall.ui.theme.ThumbStallTheme
 import kotlinx.coroutines.launch
 import java.time.ZoneId
 
+enum class AppScreen {
+    LOADING,
+    ONBOARDING_INTENSITY,
+    ONBOARDING_PERMS,
+    MAIN,
+    APP_PICKER
+}
+
 class MainActivity : ComponentActivity() {
 
+    private var currentScreen by mutableStateOf(AppScreen.LOADING)
     private var permissionState by mutableStateOf(PermissionState(false, false))
-    private var showPicker by mutableStateOf(false)
     private var showSnooze by mutableStateOf(false)
     private var selectedPackages by mutableStateOf<Set<String>>(emptySet())
     private var protectionRunning by mutableStateOf(false)
@@ -43,6 +54,11 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             selectedPackages = settingsStore.targetPackages()
+            currentScreen = if (settingsStore.isOnboardingComplete()) {
+                AppScreen.MAIN
+            } else {
+                AppScreen.ONBOARDING_INTENSITY
+            }
         }
 
         setContent {
@@ -50,44 +66,91 @@ class MainActivity : ComponentActivity() {
                 val sheetState = rememberModalBottomSheetState()
                 val scope = rememberCoroutineScope()
 
-                if (showPicker) {
-                    AppPickerScreen(
-                        selectedPackages = selectedPackages,
-                        onSelectionChanged = { newSelection ->
-                            selectedPackages = newSelection
-                            lifecycleScope.launch {
-                                settingsStore.setTargetPackages(newSelection)
+                when (currentScreen) {
+                    AppScreen.LOADING -> {
+                        // Show nothing while loading
+                    }
+
+                    AppScreen.ONBOARDING_INTENSITY -> {
+                        OnboardingIntensity(
+                            onSelect = { intensity ->
+                                lifecycleScope.launch {
+                                    settingsStore.setIntensity(intensity)
+                                }
+                                currentScreen = AppScreen.ONBOARDING_PERMS
                             }
-                        },
-                        onDone = { showPicker = false }
-                    )
-                } else {
-                    PermissionScreen(
-                        state = permissionState,
-                        selectedAppCount = selectedPackages.size,
-                        protectionRunning = protectionRunning,
-                        onRequestUsageAccess = {
-                            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-                        },
-                        onRequestOverlay = {
-                            startActivity(
-                                Intent(
-                                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                                    Uri.parse("package:$packageName"),
-                                ),
-                            )
-                        },
-                        onChooseApps = { showPicker = true },
-                        onStartProtection = {
-                            MonitorService.startMonitor(this)
-                            protectionRunning = true
-                        },
-                        onStopProtection = {
-                            MonitorService.stopMonitor(this)
-                            protectionRunning = false
-                        },
-                        onSnooze = { showSnooze = true },
-                    )
+                        )
+                    }
+
+                    AppScreen.ONBOARDING_PERMS -> {
+                        OnboardingPerms(
+                            state = permissionState,
+                            onRequestUsage = {
+                                startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+                            },
+                            onRequestOverlay = {
+                                startActivity(
+                                    Intent(
+                                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                        Uri.parse("package:$packageName")
+                                    )
+                                )
+                            },
+                            onContinue = {
+                                lifecycleScope.launch {
+                                    settingsStore.setOnboardingComplete()
+                                }
+                                currentScreen = AppScreen.MAIN
+                            }
+                        )
+                    }
+
+                    AppScreen.MAIN -> {
+                        MainNavigation(
+                            protectionRunning = protectionRunning,
+                            selectedAppCount = selectedPackages.size,
+                            permissionState = permissionState,
+                            onChooseApps = { currentScreen = AppScreen.APP_PICKER },
+                            onSnooze = { showSnooze = true },
+                            onStart = {
+                                MonitorService.startMonitor(this@MainActivity)
+                                protectionRunning = true
+                            },
+                            onStop = {
+                                MonitorService.stopMonitor(this@MainActivity)
+                                protectionRunning = false
+                            },
+                            onRequestUsage = {
+                                startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+                            },
+                            onRequestOverlay = {
+                                startActivity(
+                                    Intent(
+                                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                        Uri.parse("package:$packageName")
+                                    )
+                                )
+                            },
+                            onChangeIntensity = {
+                                // For now, just go back to intensity picker
+                                // Could be a dialog in future
+                                currentScreen = AppScreen.ONBOARDING_INTENSITY
+                            }
+                        )
+                    }
+
+                    AppScreen.APP_PICKER -> {
+                        AppPickerScreen(
+                            selectedPackages = selectedPackages,
+                            onSelectionChanged = { newSelection ->
+                                selectedPackages = newSelection
+                                lifecycleScope.launch {
+                                    settingsStore.setTargetPackages(newSelection)
+                                }
+                            },
+                            onDone = { currentScreen = AppScreen.MAIN }
+                        )
+                    }
                 }
 
                 if (showSnooze) {
@@ -117,7 +180,6 @@ class MainActivity : ComponentActivity() {
                                 }
                             },
                             onTurnOff = { reason ->
-                                // Log reason if needed, then stop
                                 MonitorService.stopMonitor(this@MainActivity)
                                 protectionRunning = false
                                 showSnooze = false

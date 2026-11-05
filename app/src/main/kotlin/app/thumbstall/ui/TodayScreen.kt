@@ -50,7 +50,8 @@ fun TodayScreen(
     onChooseApps: () -> Unit,
     onSnooze: () -> Unit,
     onStop: () -> Unit,
-    onStart: () -> Unit
+    onStart: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     val db = remember { AppDatabase.get(context) }
@@ -76,7 +77,7 @@ fun TodayScreen(
         color = MaterialTheme.colorScheme.background
     ) {
         LazyColumn(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(horizontal = 24.dp)
         ) {
