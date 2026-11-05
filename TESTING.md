@@ -9,16 +9,33 @@ target Chrome so the emulator can run this list.)
 - [ ] Fresh install (or upgrade install) succeeds
 - [ ] Both permission rows show ✗ before granting, ✓ after, state refreshes
       on returning from Settings without an app restart
-- [ ] "Start protection" enables only when both permissions are granted
+- [ ] "Choose apps to pause" opens the picker; selected count displays
+- [ ] "Start protection" enables only when permissions granted AND at least 1 app selected
 - [ ] Persistent notification "ThumbStall is protecting you" appears
+
+## App picker
+
+- [ ] Picker lists launchable apps with icons and labels
+- [ ] Essential apps (dialer, SMS, Settings, own app) are absent from the list
+- [ ] Selection persists after app restart
+- [ ] Zero apps selected → Start protection stays disabled; service does not crash
 
 ## Core loop
 
-- [ ] Open the target app → pause overlay covers it in < 1.5 s
-- [ ] "Close app" lands on the home screen
+- [ ] Open a selected app → pause overlay covers it in < 1.5 s
+- [ ] Pause screen shows breathing countdown circle, "Still want to scroll?"
+- [ ] 5/10/15 min chips are disabled during countdown, enabled after
+- [ ] "Close [app]" button (always enabled) lands on the home screen
+- [ ] Tapping any chip after countdown ends finishes the pause activity
 - [ ] Immediately reopening the target app shows the overlay again
       (no stuck "already handled" state)
-- [ ] A non-target app (e.g., Settings) never triggers the overlay
+- [ ] A non-selected app (e.g., Settings) never triggers the overlay
+
+## Escalation
+
+- [ ] Second open within the hour shows a longer countdown than the first
+- [ ] "Nth open today" counter increments across pauses
+- [ ] "You closed it instead N times this week" appears after using Close button
 
 ## Failure modes (fail open)
 
