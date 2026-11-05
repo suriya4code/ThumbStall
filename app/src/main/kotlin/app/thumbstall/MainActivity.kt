@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import app.thumbstall.service.MonitorService
 import app.thumbstall.ui.PermissionScreen
 import app.thumbstall.ui.PermissionState
 
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                             ),
                         )
                     },
-                    onStartProtection = { /* wired to MonitorService in Task 4 */ },
+                    onStartProtection = { MonitorService.startMonitor(this) },
                 )
             }
         }
