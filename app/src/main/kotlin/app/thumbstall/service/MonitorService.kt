@@ -16,6 +16,7 @@ import app.thumbstall.core.SnoozeCalc
 import app.thumbstall.core.SnoozeState
 import app.thumbstall.EssentialApps
 import app.thumbstall.ThumbStallApp
+import app.thumbstall.ui.HealthCheck
 import app.thumbstall.R
 import app.thumbstall.core.OpenTracker
 import app.thumbstall.core.OverlayGate
@@ -121,10 +122,11 @@ class MonitorService : Service() {
         if (pollJob?.isActive == true) return
         pollJob = scope.launch {
             while (isActive) {
-                // Refresh settings periodically
+                // Refresh settings and record heartbeat periodically
                 pollCount++
                 if (pollCount % SETTINGS_REFRESH_INTERVAL == 0) {
                     refreshSettings()
+                    HealthCheck.recordAlive(this@MonitorService)
                 }
 
                 poller.poll()?.let { event ->
@@ -200,6 +202,7 @@ class MonitorService : Service() {
     override fun onDestroy() {
         unregisterReceiver(screenReceiver)
         scope.cancel()
+        HealthCheck.clear(this)
         super.onDestroy()
     }
 
