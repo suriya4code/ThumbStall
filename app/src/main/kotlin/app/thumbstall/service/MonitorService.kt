@@ -11,7 +11,10 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import app.thumbstall.BuildConfig
 import app.thumbstall.R
+import app.thumbstall.core.OverlayGate
+import app.thumbstall.overlay.PauseActivity
 import app.thumbstall.usage.ForegroundPoller
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +30,7 @@ class MonitorService : Service() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var pollJob: Job? = null
     private lateinit var poller: ForegroundPoller
+    private val overlayGate = OverlayGate()
 
     private val screenReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -61,6 +65,17 @@ class MonitorService : Service() {
             while (isActive) {
                 poller.poll()?.let { event ->
                     Log.d(TAG, "foreground: ${event.packageName}")
+                    try {
+                        if (overlayGate.shouldLaunch(event, TARGET_PACKAGES, PauseActivity.showing)) {
+                            startActivity(
+                                Intent(this@MonitorService, PauseActivity::class.java)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    .putExtra(PauseActivity.EXTRA_TARGET_PACKAGE, event.packageName),
+                            )
+                        }
+                    } catch (t: Throwable) {
+                        Log.w(TAG, "overlay launch failed (failing open)", t)
+                    }
                 }
                 delay(POLL_INTERVAL_MS)
             }
@@ -109,6 +124,13 @@ class MonitorService : Service() {
         private const val CHANNEL_ID = "monitor"
         private const val NOTIFICATION_ID = 1
         private const val POLL_INTERVAL_MS = 900L
+        /** Phase 0: hardcoded target; debug builds add Chrome as an emulator-testable stand-in. */
+        private val TARGET_PACKAGES = if (BuildConfig.DEBUG) {
+            setOf("com.instagram.android", "com.android.chrome")
+        } else {
+            setOf("com.instagram.android")
+        }
+
         private const val PREFS = "thumbstall"
         private const val KEY_ENABLED = "protection_enabled"
 
