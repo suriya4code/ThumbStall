@@ -51,10 +51,12 @@ fun TodayScreen(
     onSnooze: () -> Unit,
     onStop: () -> Unit,
     onStart: () -> Unit,
+    onRestart: () -> Unit = onStart,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     val db = remember { AppDatabase.get(context) }
+    val isHealthStale = remember { HealthCheck.isStale(context) }
 
     var timeReclaimedSeconds by remember { mutableIntStateOf(0) }
     var dismissedCount by remember { mutableIntStateOf(0) }
@@ -89,6 +91,12 @@ fun TodayScreen(
                     protectionRunning = protectionRunning,
                     appCount = selectedAppCount
                 )
+
+                // Health banner if protection seems stopped
+                if (protectionRunning && isHealthStale) {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    HealthBanner(onRestart = onRestart)
+                }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
@@ -294,7 +302,7 @@ private fun AppRow(packageName: String, count: Int) {
             appIcon?.let { icon ->
                 Image(
                     bitmap = icon.toBitmap(48, 48).asImageBitmap(),
-                    contentDescription = null,
+                    contentDescription = "$appLabel icon",
                     modifier = Modifier.size(40.dp)
                 )
                 Spacer(modifier = Modifier.width(12.dp))

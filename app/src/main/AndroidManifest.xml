@@ -23,7 +23,7 @@
         android:name=".ThumbStallApp"
         android:label="ThumbStall"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:theme="@style/Theme.ThumbStall"
         android:allowBackup="true">
 
         <activity
@@ -41,7 +41,7 @@
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@android:style/Theme.Material.NoActionBar" />
+            android:theme="@style/Theme.ThumbStall" />
 
         <service
             android:name=".service.MonitorService"

@@ -19,6 +19,13 @@ target Chrome so the emulator can run this list.)
 - [ ] "Change" on apps row opens the picker; selected count displays
 - [ ] "Start protection" enables only when permissions granted AND at least 1 app selected
 - [ ] Persistent notification "ThumbStall is protecting you" appears
+- [ ] OEM battery guide shows expandable card with manufacturer-specific instructions
+
+## Dark mode
+
+- [ ] Switch system to dark mode → app theme changes
+- [ ] Switch system to light mode → app theme changes back
+- [ ] Pause screen uses dark theme in both modes
 
 ## App picker
 
