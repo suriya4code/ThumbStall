@@ -89,6 +89,7 @@ class PauseActivity : ComponentActivity() {
 
     companion object {
         const val EXTRA_TARGET_PACKAGE = "target_package"
+        const val EXTRA_PAUSE_SECONDS = "pause_seconds"
 
         @Volatile
         var showing: Boolean = false

@@ -28,7 +28,7 @@ sealed interface PauseDecision {
  * Pure rules engine deciding whether to pause an app open.
  * No side effects, no Android deps — fully JVM testable.
  */
-class PauseRules(private val config: PauseConfig = PauseConfig()) {
+class PauseRules(val config: PauseConfig = PauseConfig()) {
 
     fun decide(
         event: ForegroundEvent,
