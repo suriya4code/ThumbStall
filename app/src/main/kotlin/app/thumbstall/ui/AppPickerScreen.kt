@@ -98,7 +98,7 @@ fun AppPickerScreen(
                     ) {
                         Image(
                             bitmap = app.icon.toBitmap(48, 48).asImageBitmap(),
-                            contentDescription = null,
+                            contentDescription = "${app.label} icon",
                             modifier = Modifier.size(40.dp)
                         )
                         Text(

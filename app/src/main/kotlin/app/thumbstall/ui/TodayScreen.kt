@@ -302,7 +302,7 @@ private fun AppRow(packageName: String, count: Int) {
             appIcon?.let { icon ->
                 Image(
                     bitmap = icon.toBitmap(48, 48).asImageBitmap(),
-                    contentDescription = null,
+                    contentDescription = "$appLabel icon",
                     modifier = Modifier.size(40.dp)
                 )
                 Spacer(modifier = Modifier.width(12.dp))
