@@ -11,9 +11,16 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import app.thumbstall.BuildConfig
+import app.thumbstall.EssentialApps
 import app.thumbstall.R
+import app.thumbstall.core.OpenTracker
 import app.thumbstall.core.OverlayGate
+import app.thumbstall.core.PauseConfig
+import app.thumbstall.core.PauseDecision
+import app.thumbstall.core.PauseRules
+import app.thumbstall.data.AppDatabase
+import app.thumbstall.data.PauseEvent
+import app.thumbstall.data.SettingsStore
 import app.thumbstall.overlay.PauseActivity
 import app.thumbstall.usage.ForegroundPoller
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +31,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MonitorService : Service() {
 
@@ -31,6 +39,15 @@ class MonitorService : Service() {
     private var pollJob: Job? = null
     private lateinit var poller: ForegroundPoller
     private val overlayGate = OverlayGate()
+    private val openTracker = OpenTracker()
+
+    private var targetPackages: Set<String> = emptySet()
+    private var essentialPackages: Set<String> = emptySet()
+    private var pauseRules: PauseRules = PauseRules()
+    private var pollCount = 0
+
+    private lateinit var settingsStore: SettingsStore
+    private lateinit var db: AppDatabase
 
     private val screenReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -44,6 +61,11 @@ class MonitorService : Service() {
     override fun onCreate() {
         super.onCreate()
         poller = ForegroundPoller(this)
+        settingsStore = SettingsStore(this)
+        db = AppDatabase.get(this)
+        essentialPackages = EssentialApps.resolve(this)
+        refreshSettings()
+
         registerReceiver(
             screenReceiver,
             IntentFilter().apply {
@@ -53,8 +75,22 @@ class MonitorService : Service() {
         )
     }
 
+    private fun refreshSettings() {
+        runBlocking {
+            targetPackages = settingsStore.targetPackages()
+            val intensity = settingsStore.intensity()
+            val baseSeconds = when (intensity) {
+                "gentle" -> 5
+                "focused" -> 15
+                else -> 8 // balanced
+            }
+            pauseRules = PauseRules(PauseConfig(basePauseSeconds = baseSeconds))
+        }
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startForeground(NOTIFICATION_ID, buildNotification())
+        refreshSettings()
         startPolling()
         return START_STICKY
     }
@@ -63,21 +99,59 @@ class MonitorService : Service() {
         if (pollJob?.isActive == true) return
         pollJob = scope.launch {
             while (isActive) {
+                // Refresh settings periodically
+                pollCount++
+                if (pollCount % SETTINGS_REFRESH_INTERVAL == 0) {
+                    refreshSettings()
+                }
+
                 poller.poll()?.let { event ->
                     Log.d(TAG, "foreground: ${event.packageName}")
                     try {
-                        if (overlayGate.shouldLaunch(event, TARGET_PACKAGES, PauseActivity.showing)) {
-                            startActivity(
-                                Intent(this@MonitorService, PauseActivity::class.java)
-                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    .putExtra(PauseActivity.EXTRA_TARGET_PACKAGE, event.packageName),
-                            )
+                        if (!overlayGate.shouldLaunch(event, targetPackages, PauseActivity.showing)) {
+                            return@let
+                        }
+
+                        val priorOpens = openTracker.opensWithin(
+                            event.packageName,
+                            pauseRules.config.escalationWindowMs,
+                            event.elapsedMs
+                        )
+
+                        when (val decision = pauseRules.decide(event, targetPackages, essentialPackages, priorOpens)) {
+                            is PauseDecision.None -> { /* pass through */ }
+                            is PauseDecision.Pause -> {
+                                openTracker.recordOpen(event.packageName, event.elapsedMs)
+                                logEvent(event.packageName, PauseEvent.TYPE_PAUSED)
+                                startActivity(
+                                    Intent(this@MonitorService, PauseActivity::class.java)
+                                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        .putExtra(PauseActivity.EXTRA_TARGET_PACKAGE, event.packageName)
+                                        .putExtra(PauseActivity.EXTRA_PAUSE_SECONDS, decision.seconds)
+                                )
+                            }
                         }
                     } catch (t: Throwable) {
-                        Log.w(TAG, "overlay launch failed (failing open)", t)
+                        Log.w(TAG, "overlay decision/launch failed (failing open)", t)
                     }
                 }
                 delay(POLL_INTERVAL_MS)
+            }
+        }
+    }
+
+    private fun logEvent(packageName: String, type: String) {
+        scope.launch {
+            try {
+                db.eventDao().insert(
+                    PauseEvent(
+                        packageName = packageName,
+                        type = type,
+                        wallTimeMs = System.currentTimeMillis()
+                    )
+                )
+            } catch (t: Throwable) {
+                Log.w(TAG, "event logging failed (failing open)", t)
             }
         }
     }
@@ -124,12 +198,7 @@ class MonitorService : Service() {
         private const val CHANNEL_ID = "monitor"
         private const val NOTIFICATION_ID = 1
         private const val POLL_INTERVAL_MS = 900L
-        /** Phase 0: hardcoded target; debug builds add Chrome as an emulator-testable stand-in. */
-        private val TARGET_PACKAGES = if (BuildConfig.DEBUG) {
-            setOf("com.instagram.android", "com.android.chrome")
-        } else {
-            setOf("com.instagram.android")
-        }
+        private const val SETTINGS_REFRESH_INTERVAL = 30
 
         private const val PREFS = "thumbstall"
         private const val KEY_ENABLED = "protection_enabled"

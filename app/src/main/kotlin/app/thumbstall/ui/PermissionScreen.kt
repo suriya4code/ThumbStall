@@ -25,8 +25,10 @@ data class PermissionState(
 @Composable
 fun PermissionScreen(
     state: PermissionState,
+    selectedAppCount: Int = 0,
     onRequestUsageAccess: () -> Unit,
     onRequestOverlay: () -> Unit,
+    onChooseApps: () -> Unit = {},
     onStartProtection: () -> Unit,
 ) {
     Column(
@@ -53,11 +55,21 @@ fun PermissionScreen(
             onRequest = onRequestOverlay,
         )
 
-        Spacer(modifier = Modifier.width(1.dp))
+        Spacer(modifier = Modifier.weight(1f))
+
+        OutlinedButton(
+            onClick = onChooseApps,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                if (selectedAppCount == 0) "Choose apps to pause"
+                else "$selectedAppCount app${if (selectedAppCount == 1) "" else "s"} selected"
+            )
+        }
 
         Button(
             onClick = onStartProtection,
-            enabled = state.usageAccessGranted && state.overlayGranted,
+            enabled = state.usageAccessGranted && state.overlayGranted && selectedAppCount > 0,
             modifier = Modifier.fillMaxWidth(),
         ) {
             Text("Start protection")
