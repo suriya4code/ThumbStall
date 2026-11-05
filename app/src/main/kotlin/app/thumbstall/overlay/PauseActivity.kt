@@ -46,6 +46,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
+import app.thumbstall.ThumbStallApp
 import app.thumbstall.core.StatsWindows
 import app.thumbstall.data.AppDatabase
 import app.thumbstall.data.PauseEvent
@@ -102,7 +103,10 @@ class PauseActivity : ComponentActivity() {
                     },
                     onContinue = { minutes ->
                         logEvent(targetPackage, PauseEvent.TYPE_CONTINUED)
-                        // Phase 1: just finish, budget enforcement is Phase 2
+                        // Grant budget for this package
+                        val budgetTracker = ThumbStallApp.get().budgetTracker
+                        val durationMs = minutes * 60 * 1000L
+                        budgetTracker.grant(targetPackage, durationMs, SystemClock.elapsedRealtime())
                         finish()
                     }
                 )

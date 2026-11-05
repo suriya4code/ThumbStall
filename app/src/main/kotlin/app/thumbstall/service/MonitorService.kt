@@ -15,6 +15,7 @@ import android.util.Log
 import app.thumbstall.core.SnoozeCalc
 import app.thumbstall.core.SnoozeState
 import app.thumbstall.EssentialApps
+import app.thumbstall.ThumbStallApp
 import app.thumbstall.R
 import app.thumbstall.core.OpenTracker
 import app.thumbstall.core.OverlayGate
@@ -129,8 +130,16 @@ class MonitorService : Service() {
                 poller.poll()?.let { event ->
                     Log.d(TAG, "foreground: ${event.packageName}")
                     try {
+                        val nowElapsed = SystemClock.elapsedRealtime()
+
                         // Skip all pauses during snooze
-                        if (SnoozeCalc.isActive(snoozeState, SystemClock.elapsedRealtime())) {
+                        if (SnoozeCalc.isActive(snoozeState, nowElapsed)) {
+                            return@let
+                        }
+
+                        // Skip pause if this package has active budget
+                        val budgetTracker = ThumbStallApp.get().budgetTracker
+                        if (budgetTracker.hasActiveBudget(event.packageName, nowElapsed)) {
                             return@let
                         }
 
