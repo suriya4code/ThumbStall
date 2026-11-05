@@ -9,12 +9,24 @@ android {
     namespace = "app.thumbstall"
     compileSdk = 36
 
+    signingConfigs {
+        create("release") {
+            val storeFilePath = findProperty("THUMBSTALL_STORE_FILE") as String?
+            if (storeFilePath != null) {
+                storeFile = file(storeFilePath)
+                storePassword = findProperty("THUMBSTALL_STORE_PASSWORD") as String?
+                keyAlias = findProperty("THUMBSTALL_KEY_ALIAS") as String?
+                keyPassword = findProperty("THUMBSTALL_KEY_PASSWORD") as String?
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "app.thumbstall"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0-dev"
+        versionName = "0.1.0"
     }
 
     buildTypes {
@@ -24,6 +36,10 @@ android {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            val releaseConfig = signingConfigs.findByName("release")
+            if (releaseConfig?.storeFile != null) {
+                signingConfig = releaseConfig
+            }
         }
     }
 
