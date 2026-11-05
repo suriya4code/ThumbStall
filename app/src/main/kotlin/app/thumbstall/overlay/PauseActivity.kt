@@ -98,11 +98,11 @@ class PauseActivity : ComponentActivity() {
                     opensToday = opensToday,
                     dismissedThisWeek = dismissedThisWeek,
                     onClose = {
-                        logEvent(targetPackage, PauseEvent.TYPE_DISMISSED)
+                        logEvent(targetPackage, PauseEvent.TYPE_DISMISSED, pauseSeconds)
                         goHome()
                     },
                     onContinue = { minutes ->
-                        logEvent(targetPackage, PauseEvent.TYPE_CONTINUED)
+                        logEvent(targetPackage, PauseEvent.TYPE_CONTINUED, pauseSeconds)
                         // Grant budget for this package
                         val budgetTracker = ThumbStallApp.get().budgetTracker
                         val durationMs = minutes * 60 * 1000L
@@ -114,14 +114,15 @@ class PauseActivity : ComponentActivity() {
         }
     }
 
-    private fun logEvent(packageName: String, type: String) {
+    private fun logEvent(packageName: String, type: String, pauseSeconds: Int) {
         lifecycleScope.launch {
             try {
                 db.eventDao().insert(
                     PauseEvent(
                         packageName = packageName,
                         type = type,
-                        wallTimeMs = System.currentTimeMillis()
+                        wallTimeMs = System.currentTimeMillis(),
+                        pauseSeconds = pauseSeconds
                     )
                 )
             } catch (_: Throwable) {
