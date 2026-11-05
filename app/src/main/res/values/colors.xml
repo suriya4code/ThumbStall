@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#1B5E20</color>
-    <color name="cream">#F2F1E8</color>
-    <color name="dark_background">#1A1C18</color>
+    <!-- ThumbStall olive palette -->
+    <color name="ts_olive_600">#5A6B2E</color>
+    <color name="ts_olive_800">#3F4B1F</color>
+    <color name="ts_olive_300">#C5CC9E</color>
+    <color name="ts_olive_100">#ECEEDC</color>
+    <color name="ts_cream">#F1F2E8</color>
+    <color name="ts_paper">#F3F3EC</color>
+    <color name="ts_ink">#181914</color>
+    <color name="ts_muted">#5C6052</color>
+    <color name="ts_night">#13140F</color>
+
+    <!-- Launcher icon background -->
+    <color name="ic_launcher_background">#5A6B2E</color>
 </resources>

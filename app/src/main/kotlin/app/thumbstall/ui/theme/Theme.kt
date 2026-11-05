@@ -7,53 +7,61 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// Palette from design screens
-val Cream = Color(0xFFF2F1E8)
-val Olive = Color(0xFF4A5D23)
-val OliveDark = Color(0xFF3A4A1C)
-val PauseBackground = Color(0xFF161A10)
-val PauseTextPrimary = Color(0xFFF2F1E8)
-val PauseTextSecondary = Color(0xFFB8B8A8)
+// Official ThumbStall olive palette (H8 logo spec)
+val Olive600 = Color(0xFF5A6B2E)   // Icon tile, primary buttons
+val Olive800 = Color(0xFF3F4B1F)   // Dark accent, pressed states
+val Olive300 = Color(0xFFC5CC9E)   // Ring arc on dark
+val Olive100 = Color(0xFFECEEDC)   // Soft fills, info cards
+val Cream = Color(0xFFF1F2E8)      // Mark on olive, text on dark
+val Paper = Color(0xFFF3F3EC)      // Light app background
+val Ink = Color(0xFF181914)        // Primary text on light
+val Muted = Color(0xFF5C6052)      // Secondary text on light
+val Night = Color(0xFF13140F)      // Splash and pause background
+
+// Aliases for pause screen
+val PauseBackground = Night
+val PauseTextPrimary = Cream
+val PauseTextSecondary = Olive300
 
 private val LightColors = lightColorScheme(
-    primary = Olive,
+    primary = Olive600,
     onPrimary = Cream,
-    primaryContainer = Olive,
+    primaryContainer = Olive600,
     onPrimaryContainer = Cream,
-    secondary = OliveDark,
+    secondary = Olive800,
     onSecondary = Cream,
-    background = Cream,
-    onBackground = Color(0xFF1A1C18),
-    surface = Cream,
-    onSurface = Color(0xFF1A1C18),
-    surfaceVariant = Color(0xFFE4E3DA),
-    onSurfaceVariant = Color(0xFF45483E),
+    background = Paper,
+    onBackground = Ink,
+    surface = Paper,
+    onSurface = Ink,
+    surfaceVariant = Olive100,
+    onSurfaceVariant = Muted,
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFF9AAF6C),  // Lighter olive for dark mode
-    onPrimary = Color(0xFF1A1C18),
-    primaryContainer = OliveDark,
+    primary = Olive300,
+    onPrimary = Night,
+    primaryContainer = Olive800,
     onPrimaryContainer = Cream,
-    secondary = Color(0xFF7A8F5C),
-    onSecondary = Color(0xFF1A1C18),
-    background = Color(0xFF1A1C18),
-    onBackground = Color(0xFFE4E3DA),
-    surface = Color(0xFF1A1C18),
-    onSurface = Color(0xFFE4E3DA),
-    surfaceVariant = Color(0xFF2A2D24),
-    onSurfaceVariant = Color(0xFFB8B8A8),
+    secondary = Olive300,
+    onSecondary = Night,
+    background = Night,
+    onBackground = Cream,
+    surface = Night,
+    onSurface = Cream,
+    surfaceVariant = Color(0xFF252A1C),
+    onSurfaceVariant = Olive300,
 )
 
 private val PauseColors = darkColorScheme(
     primary = Cream,
-    onPrimary = PauseBackground,
-    background = PauseBackground,
-    onBackground = PauseTextPrimary,
-    surface = PauseBackground,
-    onSurface = PauseTextPrimary,
+    onPrimary = Night,
+    background = Night,
+    onBackground = Cream,
+    surface = Night,
+    onSurface = Cream,
     surfaceVariant = Color(0xFF252A1C),
-    onSurfaceVariant = PauseTextSecondary,
+    onSurfaceVariant = Olive300,
 )
 
 @Composable

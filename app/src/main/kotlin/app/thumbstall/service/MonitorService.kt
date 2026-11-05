@@ -227,7 +227,7 @@ class MonitorService : Service() {
         }
         return builder
             .setContentTitle("ThumbStall is protecting you")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_stat_thumbstall)
             .setOngoing(true)
             .build()
     }
