@@ -134,7 +134,37 @@ Play distribution.
 - Sideload note: Android 13+ users must tap "Allow restricted settings" in App
   info before granting Usage Access — illustrated note in README and onboarding.
 
-## 7. Out of Scope for v0.1 (explicit)
+
+
+## 7. Visual Design
+
+Canonical screen designs live in `design_screens/` (source PDF + per-screen
+PNGs). The palette is warm cream surfaces with deep-olive primary and a
+near-black olive pause screen; rounded cards; calm, non-shaming copy.
+Implement with Material 3 components themed to this palette (dynamic color
+can override hues on 12+; the design's tone and layout are what's pinned).
+
+**Screen → phase map (designs cover more than v0.1 — build only the
+current phase's slice):**
+
+| Design | Screen | Phase |
+|---|---|---|
+| `01-onboarding-intensity.png` | Intensity picker — **Gentle / Balanced (recommended) / Focused** cards + "why a few seconds works" note | Phase 3 (supersedes the "Firm" naming in §2) |
+| `02-onboarding-permissions.png` | "What ThumbStall needs, and why" — permission cards with Needed/Optional/Recommended chips; trust footer "No internet access · No account · Open source" | Phase 3 (Accessibility card deferred to feed-blocking phase; keep-alive card is the OEM guide) |
+| `03-today-dashboard.png` | Today tab — "Protection is on · N apps guarded" pill, **Time reclaimed** hero stat, "you closed X of Y openings", per-app list | Phase 3 (short-video allowance bar + Rules/Review tabs are later phases; v0.1 ships Today + Settings only) |
+| `04-pause-screen.png` | Pause — breathing countdown circle ("6 · breathe in"), "Still want to scroll?", **Close [app]** as filled primary, 5/10/15 min chips revealed after delay ("Open for · available in 6s"), "9th open today" + "you closed it instead 23 times this week" | Phases 1–2 (canonical pause design) |
+| `05-feed-filter-rules.png` | Feed filter rules with fail-open promise copy | Deferred — feed-blocking phase |
+| `06-snooze-sheet.png` | Snooze — 15 min / 1 h / Until tonight each showing "Back on at <time>"; turn-off requires typed reason + "Turn off in 0:24" countdown | Phase 2 (turn-off-with-reason replaces a bare stop toggle) |
+| `07-weekly-review.png` | Weekly review — reclaimed-time bar chart, closed-instead count, days-within-allowance, gentle escalation suggestion | Deferred — v1 weekly review |
+
+**Copy pinned by the designs (v0.1 scope):** "Still want to scroll?";
+"Close [app]" primary; "Open for · available in Ns"; "Nth open today";
+"You closed it instead N times this week"; "Time reclaimed"; "Protection
+is on · N apps guarded"; snooze options show their auto-resume time
+("Back on at 1:40 PM"); intensity preset names **Gentle / Balanced /
+Focused**.
+
+## 8. Out of Scope for v0.1 (explicit)
 
 No Accessibility service, no notification listener, no Shizuku, no VPN, no
 launcher, no streaks, no account, no network, no analytics, no donation links in
