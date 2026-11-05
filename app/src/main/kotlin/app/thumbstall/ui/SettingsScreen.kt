@@ -98,6 +98,19 @@ fun SettingsScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
+            // OEM battery guide
+            Text(
+                text = "Battery",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OemGuide()
+
+            Spacer(modifier = Modifier.height(24.dp))
+
             // About section
             Text(
                 text = "About",
