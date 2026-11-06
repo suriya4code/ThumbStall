@@ -6,6 +6,7 @@
   const finePointer = matchMedia("(pointer: fine)").matches;
   const params = new URLSearchParams(location.search);
   const LOOP = params.has("loop"); // ?loop cycles scroll → stall, used to record the README banner
+  const MANUAL = params.has("manual"); // with ?loop: frames are stepped by window.__step(ms) for recording
 
   /* ═══════════════ HERO: feed column + reel ═══════════════ */
   const canvas = document.getElementById("feed");
@@ -119,10 +120,10 @@
   function frame(now) {
     const dt = Math.min(now - last, 50) / 1000;
     last = now;
-    if (!running) { requestAnimationFrame(frame); return; }
+    if (!running) { if (!MANUAL) requestAnimationFrame(frame); return; }
     t += dt;
 
-    if (LOOP) { const c = t % 10; if (c < 3.6 && stalled) setStall(false); else if (c >= 3.6 && !stalled) setStall(true); }
+    if (LOOP) { const c = t % 13; if (c < 3.5 && stalled) setStall(false); else if (c >= 3.5 && !stalled) setStall(true); }
 
     mx += (tmx - mx) * Math.min(1, dt * 3); my += (tmy - my) * Math.min(1, dt * 3);
     stallAmt += ((stalled ? 1 : 0) - stallAmt) * Math.min(1, dt * (stalled ? 1.6 : 3));
@@ -143,7 +144,7 @@
     }
 
     draw(st);
-    requestAnimationFrame(frame);
+    if (!MANUAL) requestAnimationFrame(frame);
   }
 
   function draw(st) {
@@ -286,7 +287,7 @@
   function radius() { return 1 + stallAmt * 0.12; }
 
   resize();
-  addEventListener("resize", resize);
+  new ResizeObserver(resize).observe(canvas);
   if (finePointer) addEventListener("pointermove", (e) => { tmx = (e.clientX / innerWidth - 0.5) * 2; tmy = (e.clientY / innerHeight - 0.5) * 2; });
   addEventListener("scroll", () => { pageSlow = Math.min(1, scrollY / (innerHeight * 0.9)); }, { passive: true });
   new IntersectionObserver(([e]) => { running = e.isIntersecting; }).observe(canvas);
@@ -294,6 +295,9 @@
   if (reduceMotion) {
     stallAmt = 1; speed = 0; setStall(true);
     t = 0; draw(PAUSE_SECS); running = false;
+  } else if (MANUAL) {
+    let clock = 0; last = 0;
+    window.__step = (ms) => { for (let k = 0; k < ms; k += 16) { clock += 16; frame(clock); } };
   } else {
     requestAnimationFrame(frame);
     if (!LOOP) setTimeout(() => { if (!userTouched && !stalled) setStall(true); }, 3400);
