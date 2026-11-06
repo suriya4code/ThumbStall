@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="36" viewBox="0 0 960 36" role="img" aria-label="divider">
+<title>divider</title>
+<defs><linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#c5cc9e" stop-opacity="0"/><stop offset=".5" stop-color="#c5cc9e" stop-opacity=".5"/><stop offset="1" stop-color="#c5cc9e" stop-opacity="0"/></linearGradient><radialGradient id="dot"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#c5cc9e"/><stop offset="1" stop-color="#c5cc9e" stop-opacity="0"/></radialGradient></defs>
+<style>
+
+.pl { animation: pl 5s linear infinite; } @keyframes pl { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(380px); opacity: 0; } }.pr { animation: pr 5s linear infinite; } @keyframes pr { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(-380px); opacity: 0; } }
+.spin { transform-box: view-box; animation: spin 9s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 35%, 100% { transform: rotate(360deg); } }
+.arc { animation: arc 9s ease-in-out infinite; }
+@keyframes arc { 0% { stroke-dasharray: 0 100; } 35% { stroke-dasharray: 0 100; } 90%, 100% { stroke-dasharray: 100 100; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<rect x="40" y="17.25" width="880" height="1.5" fill="url(#ln)"/>
+<circle cx="80" cy="18" r="7" fill="url(#dot)" class="pl"/><circle cx="880" cy="18" r="7" fill="url(#dot)" class="pr"/>
+<circle cx="480" cy="18" r="17" fill="#13140f"/>
+<g transform="translate(480,18) scale(0.42)"><circle r="31" fill="none" stroke="#f1f2e8" stroke-opacity=".28" stroke-width="3"/><circle r="31" fill="none" stroke="#f1f2e8" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="75 100" transform="rotate(-90)" class="arc"/><g class="spin"><path d="M32,54 A22,22 0 1,0 76,54 A22,22 0 1,0 32,54 Z M63.1,54 A3.9,3.9 0 1,0 70.9,54 A3.9,3.9 0 1,0 63.1,54 Z M56.6,65.26 A3.9,3.9 0 1,0 64.4,65.26 A3.9,3.9 0 1,0 56.6,65.26 Z M43.6,65.26 A3.9,3.9 0 1,0 51.4,65.26 A3.9,3.9 0 1,0 43.6,65.26 Z M37.1,54 A3.9,3.9 0 1,0 44.9,54 A3.9,3.9 0 1,0 37.1,54 Z M43.6,42.74 A3.9,3.9 0 1,0 51.4,42.74 A3.9,3.9 0 1,0 43.6,42.74 Z M56.6,42.74 A3.9,3.9 0 1,0 64.4,42.74 A3.9,3.9 0 1,0 56.6,42.74 Z" transform="translate(-54,-54)" fill="#f1f2e8" fill-rule="evenodd"/></g><path d="M49.4,48.5 h3.4 v11 h-3.4 Z M55.2,48.5 h3.4 v11 h-3.4 Z" transform="translate(-54,-54)" fill="#5a6b2e"/></g>
+</svg>

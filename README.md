@@ -21,42 +21,72 @@
 
 </div>
 
----
+<img src="assets/readme/divider.svg" width="100%" alt="" />
 
 ThumbStall adds a brief pause before opening distracting apps, giving you a moment to reconsider. No accounts, no internet, no tracking — everything stays on your device.
 
-> **Try it in your browser:** the [website](https://suriya4code.github.io/ThumbStall/#try) has a working pause screen that runs the same escalation rule as the app.
+<a name="try"></a>
+<a href="https://suriya4code.github.io/ThumbStall/#try"><img src="assets/readme/header-try.svg" width="100%" alt="Try a pause: this is what your thumb meets first." /></a>
 
-## Features
+<a href="https://suriya4code.github.io/ThumbStall/#try"><img src="assets/readme/pause-demo.svg" width="100%" alt="The pause screen: a breathing countdown from 8 asks Still want to scroll? The 5, 10 and 15 minute choices unlock when it reaches zero. Beside it, the escalation ladder: 8, 13, 18, 23, 28 and a 30 second cap." /></a>
+
+Most opens happen on autopilot. A short pause is enough to notice, and closing is always one tap. Open the same app again within the hour and the wait grows by 5 seconds, up to 30. **[Try the live version on the website →](https://suriya4code.github.io/ThumbStall/#try)**
+
+<a name="features"></a>
+<img src="assets/readme/header-features.svg" width="100%" alt="Features: no blocks, no locks, just a moment." />
+
+<img src="assets/readme/features.svg" width="100%" alt="Nine features: breathing pause, escalating delays, session budget, snooze, costly override, essentials allowlist, positive stats, OEM battery guide, fully offline." />
+
+<details>
+<summary><b>Feature list as text</b></summary>
 
 - **Pause screen** — A breathing countdown before any app you choose
 - **Escalating delays** — Repeat opens get longer pauses
 - **Session budget** — Grant yourself 5/10/15 minutes when you really need it
 - **Snooze** — Temporarily disable protection (15 min / 1 hour / until tonight)
+- **Costly override** — Turning protection off takes a reason and a 24-second wait
 - **Essentials allowlist** — Dialer, SMS, and maps are never blocked
 - **Positive stats** — See time reclaimed, not shame metrics
 - **OEM battery guide** — Manufacturer-specific instructions to keep protection running
 - **Dark mode** — Follows system theme
 - **Fully offline** — No internet permission, no analytics, no cloud
 
-## How it works
+</details>
+
+<a name="how-it-works"></a>
+<img src="assets/readme/header-how.svg" width="100%" alt="How it works: from a tap to a breath, in under a second." />
 
 <img src="assets/readme/pipeline.svg" width="100%" alt="Anatomy of a pause: the app notices which app opened, lets essentials through, checks your targets, snooze and budget, gates the overlay, escalates the pause, then shows the breathing screen" />
 
-A foreground service polls `UsageStatsManager` for the app in front. Every decision after that is made by the pure Kotlin rules engine in `core/`, which has no Android dependencies and is tested on the JVM: escalation is `min(base + 5 s × repeats in the last hour, 30 s)`.
+<img src="assets/readme/stats.svg" width="100%" alt="900 ms polling interval, 30 s longest possible pause, 35 unit tests on the core, 0 network requests" />
 
-## Screenshots
+A foreground service polls `UsageStatsManager` for the app in front. Every decision after that is made by the pure Kotlin rules engine in `core/` (`PauseRules`, `OverlayGate`, `OpenTracker`, `BudgetTracker`, `SnoozeState`, `StatsWindows`), which has no Android dependencies and is tested on the JVM.
 
-<p align="center">
-  <img src="design_screens/04-pause-screen.png" width="24%" alt="Pause screen with breathing countdown" />
-  <img src="design_screens/01-onboarding-intensity.png" width="24%" alt="Onboarding: choose an intensity" />
-  <img src="design_screens/02-onboarding-permissions.png" width="24%" alt="Onboarding: permissions explained" />
-  <img src="design_screens/06-snooze-sheet.png" width="24%" alt="Snooze sheet with a costly turn-off" />
-</p>
+```
+app/         # Android app (Compose UI, services, Room database)
+core/        # Pure Kotlin rules engine (JVM-tested, no Android deps)
+docs/        # Design specs, plans, signing guide
+```
+
+<a name="privacy"></a>
+<img src="assets/readme/header-privacy.svg" width="100%" alt="Privacy: the best privacy policy is a missing permission." />
+
+<img src="assets/readme/privacy.svg" width="100%" alt="AndroidManifest permissions and why: usage stats, overlay, foreground service, notifications, boot completed and exact alarms. INTERNET is struck through: never requested." />
+
+- **No internet access** — The app has no INTERNET permission
+- **No accounts** — No sign-up, no login, no cloud sync
+- **No tracking** — No analytics, no crash reporting, no telemetry
+- **Local only** — All data stays on your device
+
+<a name="screenshots"></a>
+<img src="assets/readme/header-screens.svg" width="100%" alt="Screens: olive, cream and a lot of quiet." />
+
+<img src="assets/readme/screens.webp" width="100%" alt="A 3D carousel of ThumbStall design screens turning: the pause screen, onboarding intensity, permissions explained, and the snooze sheet." />
 
 <sub>From the design set. Some screens preview roadmap features such as feed filtering.</sub>
 
-## Install
+<a name="install"></a>
+<img src="assets/readme/header-install.svg" width="100%" alt="Install: two minutes to a calmer thumb." />
 
 ### From GitHub Releases
 
@@ -64,39 +94,29 @@ A foreground service polls `UsageStatsManager` for the app in front. Every decis
 2. Enable "Install from unknown sources" for your browser/file manager
 3. Install the APK
 
-### Android 13+ Note
+> [!NOTE]
+> On **Android 13 and newer**, grant "Allow restricted settings" before Usage Access will work:
+> **Settings → Apps → ThumbStall → ⋮ → Allow restricted settings**, then grant Usage Access from the app.
 
-On Android 13 and newer, you may need to grant "Allow restricted settings" before Usage Access will work:
-1. After installing, go to **Settings → Apps → ThumbStall**
-2. Tap the ⋮ menu → **Allow restricted settings**
-3. Then grant Usage Access from the app
+### Build from Source
 
-## Build from Source
+<img src="assets/readme/terminal.svg" width="100%" alt="Terminal: git clone, cd ThumbStall, ./gradlew assembleFossDebug, BUILD SUCCESSFUL, debug APK written" />
 
-Requirements:
-- Android Studio or JDK 17+
-- Android SDK with platform 36
+Requirements: Android Studio or JDK 17+, and the Android SDK with platform 36.
 
 ```bash
-# Clone
 git clone https://github.com/suriya4code/ThumbStall.git
 cd ThumbStall
-
-# Build debug APK
-./gradlew assembleFossDebug
-
-# Output: app/build/outputs/apk/foss/debug/app-foss-debug.apk
+./gradlew assembleFossDebug   # → app/build/outputs/apk/foss/debug/app-foss-debug.apk
+./gradlew :core:test          # rules engine tests
 ```
 
 For release builds, see [docs/signing.md](docs/signing.md).
 
-## Project Structure
+<a name="roadmap"></a>
+<img src="assets/readme/header-roadmap.svg" width="100%" alt="Roadmap: v0.1 is out, the reel keeps turning." />
 
-```
-app/         # Android app (Compose UI, services, Room database)
-core/        # Pure Kotlin rules engine (JVM-tested, no Android deps)
-docs/        # Design specs, plans, signing guide
-```
+<img src="assets/readme/roadmap.svg" width="100%" alt="v0.1 shipped: pause screen with breathing countdown; app picker, escalation, session budget; snooze and costly override; stats dashboard; onboarding flow. Next: feed blocking for Reels and Shorts, daily time limits, schedules for work hours and bedtime, F-Droid and IzzyOnDroid." />
 
 ## Contributing
 
@@ -106,24 +126,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 GPL-3.0 — see [LICENSE](LICENSE).
 
-## Privacy
+<br />
 
-- **No internet access** — The app has no INTERNET permission
-- **No accounts** — No sign-up, no login, no cloud sync
-- **No tracking** — No analytics, no crash reporting, no telemetry
-- **Local only** — All data stays on your device
-
-## Roadmap
-
-v0.1 (current):
-- [x] Pause screen with breathing countdown
-- [x] App picker, escalation, session budget
-- [x] Snooze and costly override
-- [x] Stats dashboard
-- [x] Onboarding flow
-
-Future:
-- [ ] Feed blocking (Reels, Shorts) via Accessibility
-- [ ] Daily time limits
-- [ ] Schedules (work hours, bedtime)
-- [ ] F-Droid / IzzyOnDroid distribution
+<a href="https://suriya4code.github.io/ThumbStall/"><img src="assets/readme/footer.svg" width="100%" alt="ThumbStall. Pause the reel. Play your life!" /></a>

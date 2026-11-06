@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="333" viewBox="0 0 960 333" role="img" aria-label="AndroidManifest permissions: usage stats, overlay, foreground service, notifications, boot completed and exact alarms. INTERNET is never requested.">
+<title>AndroidManifest permissions: usage stats, overlay, foreground service, notifications, boot completed and exact alarms. INTERNET is never requested.</title>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1c15"/><stop offset="1" stop-color="#13140f"/></linearGradient></defs>
+<style>
+@font-face{font-family:TSM;src:url(data:font/woff2;base64,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) format('woff2');font-weight:500;}
+@font-face{font-family:TSMB;src:url(data:font/woff2;base64,d09GMgABAAAAAAPoABAAAAAABuAAAAOPAAI2BAAAAAAAAAAAAAAAAAAAAAAAAAAAGhwbIBwqBmA/U1RBVEwATBEICoYshRIBNgIkAxgLGAAEIAVsByAMBxscBVGULspegJ8JNrgf5RUILMMwRiyv/GIQLZomQHPCiofv18o/93XP1my/ADHLhfKJiorOJzAO2AM54Jk417RCo4E2kN04QCN1OtHto+gH8tXnWfb5X1g2MLYRK9OIpqufMe0x5Xk5T3s6jmMycFPuAebpFY80sPcseofiPsVlmsAf0PRj5gMckL63ickIokdm6tOOQAdA2hcshJq6EKgMMEisWLVhh7oSGgA5JKOMkcZ1unD0xiV9MgGny7QvfaxGakl7sF6fjkOmxRISzQQz/GnrluGlIW4V//7/oPg3JiAgjUpfY4iaEOoSekgYId0+feZG4OyNoxeis1DqI0E0pY9Je0i/ohBSdAEBEgr0UAj0UJqDSl2SDHHSJbcaMMQJl1xtaPyo16g1CgGAEA06gwx6oTNREMsAJSgkSUiC28qiuLR3p35Vr/OcXhNxWESudSyPdaydOA/f2fKKePrOrU/j8q7IZRXV+CePXa33iKe3quXCk+vRRJEFTj6jg7uTW/f986eP/VjenWtZnlPNT1URStPR2F1yUHXiabivhfgcXoKqQmiMDcrPF1nbXXs7y+YSyvCc7axeLCs8e+7JYqb14+nJo+rY8oqiihxZVqUncHbUbeU0rnk3jvjIh/Le54O+z/3+btiBfb/V1wenHrD5s/HzDgD/gttOFAO3XlA0S/Qa8ZQFP2s//OVnF6amoyGlTxTnl5ri5MR+canbAROaV52mMgLCS0PhwJVJY47jhM3brBZ9j5NuI1bds+AkS0wPjdZlEv7CxlGt5NqCRKeWGgNpd7LrOaMeH8kvHID20YviGTsxbY3EHCwGb12/aJKsjnjCJFu//56dAXqbDjg0qpZc1jvlh6BzRrPBnTFPTZ6cKqkOQK/64oPbF7LlLuV/1ISjt8EDB9Vy8GCH3WtV2rgluuXJGsErHm6+yFv7uaWFOasMcrTjgQ1qQ8aRApzZ7LBr0bdZrfOoc7/6CTHj/C4DxjefvV2J2rpWKuPkWEG1dm3RZgXw7XjkILVu8GnLZg9O6fqvKhkIpFnlt3+3rj3cecFv9aL4Hr65vWrDd3R+y+jGhjQ1fS00SSD4i3HaYzSwpqkCfKQ99ln1Mhutcchy4603GoFsogIEOlWzTCHKZkkdmxZ0UO83xYDOSI932kVliGUuu+CE3U4667QzbljrhqMuOOu4bS676KhLCqCRafPk34/Gr8t2AA==) format('woff2');font-weight:700;}
+
+.ln { opacity: 0; animation: ln 10s infinite; }
+@keyframes ln { 0% { opacity: 0; transform: translateX(-6px); } 4%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.st { stroke-dasharray: 100; stroke-dashoffset: 100; animation: st 10s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes st { 0%, 48% { stroke-dashoffset: 100; } 60%, 94% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+.no { opacity: 0; animation: no 10s infinite; }
+@keyframes no { 0%, 58% { opacity: 0; } 64%, 94% { opacity: 1; } 100% { opacity: 0; } }
+.dimx { animation: dimx 10s infinite; }
+@keyframes dimx { 0%, 50% { opacity: 1; } 60%, 94% { opacity: .45; } 100% { opacity: 1; } }
+.cur { animation: cur 1s steps(1) infinite; } @keyframes cur { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<rect x="1" y="1" width="958" height="331" rx="18" fill="url(#bg)" stroke="rgba(197,204,158,.18)"/>
+<rect x="24" y="24" width="912" height="285" rx="16" fill="#0f100c" stroke="rgba(197,204,158,.26)"/>
+<path d="M24 64 V40 a16 16 0 0 1 16 -16 H920 a16 16 0 0 1 16 16 V64 Z" fill="#171812"/><line x1="24" y1="64" x2="936" y2="64" stroke="rgba(197,204,158,.14)"/>
+<circle cx="46" cy="44" r="5.5" fill="#34372b"/>
+<circle cx="64" cy="44" r="5.5" fill="#34372b"/>
+<circle cx="82" cy="44" r="5.5" fill="#34372b"/>
+<text x="112.0" y="48.5" font-family="TSM" font-size="12.5" fill="#9a9e8c">AndroidManifest.xml</text>
+<text x="48.0" y="96.0" font-family="TSM" font-size="13.5" fill="#6c705f" class="ln" style="animation-delay:0s">&lt;!-- everything ThumbStall asks for, and why --&gt;</text>
+<g class="ln" style="animation-delay:0.25s">
+<text x="48" y="123" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"PACKAGE_USAGE_STATS"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="123.0" font-family="TSM" font-size="13.5" fill="#6c705f">which app just opened</text>
+</g>
+<g class="ln" style="animation-delay:0.60s">
+<text x="48" y="150" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"SYSTEM_ALERT_WINDOW"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="150.0" font-family="TSM" font-size="13.5" fill="#6c705f">show the pause on top</text>
+</g>
+<g class="ln" style="animation-delay:0.95s">
+<text x="48" y="177" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"FOREGROUND_SERVICE"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="177.0" font-family="TSM" font-size="13.5" fill="#6c705f">keep watching reliably</text>
+</g>
+<g class="ln" style="animation-delay:1.30s">
+<text x="48" y="204" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"POST_NOTIFICATIONS"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="204.0" font-family="TSM" font-size="13.5" fill="#6c705f">“protection is on”</text>
+</g>
+<g class="ln" style="animation-delay:1.65s">
+<text x="48" y="231" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"RECEIVE_BOOT_COMPLETED"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="231.0" font-family="TSM" font-size="13.5" fill="#6c705f">restart after reboot</text>
+</g>
+<g class="ln" style="animation-delay:2.00s">
+<text x="48" y="258" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"SCHEDULE_EXACT_ALARM"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+<text x="560.0" y="258.0" font-family="TSM" font-size="13.5" fill="#6c705f">end a snooze on time</text>
+</g>
+<g class="ln" style="animation-delay:2.35s"><g class="dimx">
+<text x="48" y="285" font-family="TSM" font-size="13.5"><tspan fill="#8e9a6a">&lt;uses-permission </tspan><tspan fill="#c5cc9e">name</tspan><tspan fill="#d8dbc9">=</tspan><tspan fill="#e3c590">"INTERNET"</tspan><tspan fill="#8e9a6a">/&gt;</tspan></text>
+</g>
+<line x1="44" y1="280.5" x2="327.4" y2="280.5" stroke="#c2622d" stroke-width="2.4" stroke-linecap="round" pathLength="100" class="st"/>
+</g>
+<text x="560.0" y="285.0" font-family="TSMB" font-size="13.5" fill="#c2622d" class="no">never requested</text>
+<rect x="687.5" y="273" width="8" height="15" fill="#c2622d" class="no cur"/>
+</svg>
