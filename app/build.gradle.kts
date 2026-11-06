@@ -11,12 +11,13 @@ android {
 
     signingConfigs {
         create("release") {
-            val storeFilePath = findProperty("THUMBSTALL_STORE_FILE") as String?
-            if (storeFilePath != null) {
+            val props = project.properties
+            val storeFilePath = props["THUMBSTALL_STORE_FILE"] as? String
+            if (storeFilePath != null && file(storeFilePath).exists()) {
                 storeFile = file(storeFilePath)
-                storePassword = findProperty("THUMBSTALL_STORE_PASSWORD") as String?
-                keyAlias = findProperty("THUMBSTALL_KEY_ALIAS") as String?
-                keyPassword = findProperty("THUMBSTALL_KEY_PASSWORD") as String?
+                storePassword = props["THUMBSTALL_STORE_PASSWORD"] as? String
+                keyAlias = props["THUMBSTALL_KEY_ALIAS"] as? String
+                keyPassword = props["THUMBSTALL_KEY_PASSWORD"] as? String
             }
         }
     }
@@ -25,8 +26,8 @@ android {
         applicationId = "app.thumbstall"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.1.1"
     }
 
     buildTypes {
