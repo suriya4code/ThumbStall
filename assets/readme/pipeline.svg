@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="Anatomy of a ThumbStall pause: app opens, essentials pass, your rules, OverlayGate, PauseRules escalation, breathing pause">
+  <title>Anatomy of a ThumbStall pause</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1c15"/>
+      <stop offset="1" stop-color="#13140f"/>
+    </linearGradient>
+    <linearGradient id="wire" gradientUnits="userSpaceOnUse" x1="100" y1="0" x2="860" y2="0">
+      <stop offset="0" stop-color="#5a6b2e"/>
+      <stop offset=".6" stop-color="#c5cc9e"/>
+      <stop offset="1" stop-color="#f1f2e8"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".35" stop-color="#c5cc9e"/>
+      <stop offset="1" stop-color="#c5cc9e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+    .mono { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; }
+    .kick { fill: #c5cc9e; font-size: 12px; letter-spacing: 2.4px; font-weight: 600; }
+    .t { fill: #f1f2e8; font-size: 15px; font-weight: 600; }
+    .d { fill: #9a9e8c; font-size: 12.5px; }
+    .num { fill: #c5cc9e; font-size: 14px; font-weight: 600; }
+    .ring { fill: #1d1f17; stroke: rgba(197,204,158,.32); stroke-width: 1.5; }
+    .lit { fill: none; stroke: #c5cc9e; stroke-width: 2.2; opacity: 0; animation: lit 7s infinite; }
+    .n1 .lit { animation-delay: 0.10s; } .n2 .lit { animation-delay: 0.52s; } .n3 .lit { animation-delay: 0.94s; } .n4 .lit { animation-delay: 1.36s; } .n5 .lit { animation-delay: 1.78s; } .n6 .lit { animation-delay: 2.20s; } 
+    .n6 .lit { stroke: #f1f2e8; }
+    @keyframes lit { 0%, 3% { opacity: 0; } 7%, 62% { opacity: 1; } 78%, 100% { opacity: 0; } }
+    .breath { fill: rgba(197,204,158,.16); transform-box: fill-box; transform-origin: center; animation: breath 7s infinite; opacity: 0; }
+    @keyframes breath { 0%, 36% { opacity: 0; transform: scale(1); } 44% { opacity: 1; transform: scale(1); } 58% { transform: scale(1.55); opacity: .9; } 72% { transform: scale(1.05); opacity: .6; } 84%, 100% { transform: scale(1); opacity: 0; } }
+    .flow { stroke-dasharray: 760; stroke-dashoffset: 760; animation: flow 7s linear infinite; }
+    @keyframes flow { 0% { stroke-dashoffset: 760; } 38%, 62% { stroke-dashoffset: 0; } 78%, 100% { stroke-dashoffset: -760; } }
+    .packet { animation: packet 7s linear infinite; }
+    @keyframes packet { 0% { transform: translateX(0); opacity: 0; } 3% { opacity: 1; } 38% { transform: translateX(760px); opacity: 1; } 46%, 100% { transform: translateX(760px); opacity: 0; } }
+    .a { animation: a 7s infinite; }
+    .b { animation: b 7s infinite; opacity: 0; }
+    @keyframes a { 0%, 34% { opacity: 1; } 40%, 92% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes b { 0%, 36% { opacity: 0; } 42%, 90% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .lit { opacity: 1; } .flow { stroke-dashoffset: 0; } .a { opacity: 0; } .b { opacity: 1; } }
+  </style>
+
+  <rect x="1" y="1" width="958" height="308" rx="18" fill="url(#bg)" stroke="rgba(197,204,158,.18)"/>
+  <text x="40" y="46" class="kick">ANATOMY OF A PAUSE</text>
+  <text x="920" y="46" class="kick" text-anchor="end" style="fill:#c2622d">TAP → BREATH IN UNDER A SECOND</text>
+
+  <line x1="100" y1="120" x2="860" y2="120" stroke="rgba(197,204,158,.14)" stroke-width="2"/>
+  <line class="flow" x1="100" y1="120" x2="860" y2="120" stroke="url(#wire)" stroke-width="2.5"/>
+  <circle class="packet" cx="100" cy="120" r="12" fill="url(#glow)"/>
+
+  <g class="n1"><circle class="ring" cx="100" cy="120" r="28"/><circle class="lit" cx="100" cy="120" r="28"/><text x="100" y="125" class="num mono" text-anchor="middle">01</text>
+    <text x="100" y="178" class="t" text-anchor="middle">App opens</text><text x="100" y="198" class="d" text-anchor="middle">UsageStats polled</text><text x="100" y="214" class="d" text-anchor="middle">every 900 ms</text></g>
+  <g class="n2"><circle class="ring" cx="252" cy="120" r="28"/><circle class="lit" cx="252" cy="120" r="28"/><text x="252" y="125" class="num mono" text-anchor="middle">02</text>
+    <text x="252" y="178" class="t" text-anchor="middle">Essential?</text><text x="252" y="198" class="d" text-anchor="middle">dialer, SMS, maps</text><text x="252" y="214" class="d" text-anchor="middle">always pass</text></g>
+  <g class="n3"><circle class="ring" cx="404" cy="120" r="28"/><circle class="lit" cx="404" cy="120" r="28"/><text x="404" y="125" class="num mono" text-anchor="middle">03</text>
+    <text x="404" y="178" class="t" text-anchor="middle">Your rules</text><text x="404" y="198" class="d" text-anchor="middle">target, snooze</text><text x="404" y="214" class="d" text-anchor="middle">and session budget</text></g>
+  <g class="n4"><circle class="ring" cx="556" cy="120" r="28"/><circle class="lit" cx="556" cy="120" r="28"/><text x="556" y="125" class="num mono" text-anchor="middle">04</text>
+    <text x="556" y="178" class="t" text-anchor="middle">OverlayGate</text><text x="556" y="198" class="d" text-anchor="middle">1 s monotonic</text><text x="556" y="214" class="d" text-anchor="middle">cooldown per app</text></g>
+  <g class="n5"><circle class="ring" cx="708" cy="120" r="28"/><circle class="lit" cx="708" cy="120" r="28"/><text x="708" y="125" class="num mono" text-anchor="middle">05</text>
+    <text x="708" y="178" class="t" text-anchor="middle">PauseRules</text><text x="708" y="198" class="d" text-anchor="middle">base + 5 s × repeats,</text><text x="708" y="214" class="d" text-anchor="middle">capped at 30 s</text></g>
+  <g class="n6"><circle class="breath" cx="860" cy="120" r="28"/><circle class="ring" cx="860" cy="120" r="28"/><circle class="lit" cx="860" cy="120" r="28"/><text x="860" y="125" class="num mono" text-anchor="middle">06</text>
+    <text x="860" y="178" class="t" text-anchor="middle">Breathe</text><text x="860" y="198" class="d" text-anchor="middle">pause screen,</text><text x="860" y="214" class="d" text-anchor="middle">closing is one tap</text></g>
+
+  <rect x="40" y="240" width="880" height="46" rx="10" fill="rgba(0,0,0,.28)" stroke="rgba(197,204,158,.3)" stroke-dasharray="4 5"/>
+  <text x="480" y="269" class="mono a" text-anchor="middle" fill="#9a9e8c" font-size="14.5">Instagram · 3rd open this hour · on autopilot</text>
+  <text x="480" y="269" class="mono b" text-anchor="middle" fill="#f1f2e8" font-size="14.5">8 s + 5 s × 2 = <tspan fill="#c5cc9e" font-weight="700">18 s</tspan> to breathe · then close, or pick 5 · 10 · 15 min</text>
+</svg>
