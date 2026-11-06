@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="150" viewBox="0 0 960 150" role="img" aria-label="900 ms polling interval, 30 s longest possible pause, 35 unit tests on the core, 0 network requests">
+<title>900 ms polling interval, 30 s longest possible pause, 35 unit tests on the core, 0 network requests</title>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1c15"/><stop offset="1" stop-color="#13140f"/></linearGradient><clipPath id="oc0"><rect x="24.0" y="34" width="219.0" height="54"/></clipPath><clipPath id="oc1"><rect x="255.0" y="34" width="219.0" height="54"/></clipPath><clipPath id="oc2"><rect x="486.0" y="34" width="219.0" height="54"/></clipPath><clipPath id="oc3"><rect x="717.0" y="34" width="219.0" height="54"/></clipPath></defs>
+<style>
+@font-face{font-family:TSB;src:url(data:font/woff2;base64,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) format('woff2');font-weight:800;}
+@font-face{font-family:TSI;src:url(data:font/woff2;base64,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) format('woff2');font-weight:400;}
+
+.roll { animation: roll 10s cubic-bezier(.22,1,.36,1) infinite; }
+@keyframes roll { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(var(--to)); } 100% { transform: translateY(0); } }
+
+.r00 { animation: r00 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.00s; } @keyframes r00 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-988px); } 100% { transform: translateY(0); } }
+.r01 { animation: r01 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.08s; } @keyframes r01 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-520px); } 100% { transform: translateY(0); } }
+.r02 { animation: r02 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.16s; } @keyframes r02 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-520px); } 100% { transform: translateY(0); } }
+.r10 { animation: r10 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.15s; } @keyframes r10 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-676px); } 100% { transform: translateY(0); } }
+.r11 { animation: r11 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.23s; } @keyframes r11 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-520px); } 100% { transform: translateY(0); } }
+.r20 { animation: r20 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.30s; } @keyframes r20 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-676px); } 100% { transform: translateY(0); } }
+.r21 { animation: r21 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.38s; } @keyframes r21 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-780px); } 100% { transform: translateY(0); } }
+.r30 { animation: r30 10s cubic-bezier(.22,1,.36,1) infinite; animation-delay: 0.45s; } @keyframes r30 { 0% { transform: translateY(0); } 22%, 88% { transform: translateY(-520px); } 100% { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<rect x="1" y="1" width="958" height="148" rx="18" fill="url(#bg)" stroke="rgba(197,204,158,.18)"/>
+<rect x="24.0" y="22" width="219.0" height="106" rx="16" fill="#13140f" stroke="rgba(197,204,158,.14)"/>
+<g clip-path="url(#oc0)">
+<g class="r00">
+<text x="44.0" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="44.0" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="44.0" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="44.0" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="44.0" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="44.0" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="44.0" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="44.0" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="44.0" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="44.0" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="44.0" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="44.0" y="649.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="44.0" y="701.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="44.0" y="753.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="44.0" y="805.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="44.0" y="857.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="44.0" y="909.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="44.0" y="961.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="44.0" y="1013.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="44.0" y="1065.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+</g>
+<g class="r01">
+<text x="71.3" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="71.3" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="71.3" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="71.3" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="71.3" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="71.3" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="71.3" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="71.3" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="71.3" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="71.3" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="71.3" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+</g>
+<g class="r02">
+<text x="98.6" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="98.6" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="98.6" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="98.6" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="98.6" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="98.6" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="98.6" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="98.6" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="98.6" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="98.6" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="98.6" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+</g>
+</g>
+<text x="128.0" y="77.0" font-family="TSB" font-size="27.599999999999998" fill="#c5cc9e">ms</text>
+<text x="44.0" y="112.0" font-family="TSI" font-size="13.5" fill="#9a9e8c">polling interval</text>
+<rect x="255.0" y="22" width="219.0" height="106" rx="16" fill="#13140f" stroke="rgba(197,204,158,.14)"/>
+<g clip-path="url(#oc1)">
+<g class="r10">
+<text x="275.0" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="275.0" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="275.0" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="275.0" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="275.0" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="275.0" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="275.0" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="275.0" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="275.0" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="275.0" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="275.0" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="275.0" y="649.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="275.0" y="701.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="275.0" y="753.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+</g>
+<g class="r11">
+<text x="302.3" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="302.3" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="302.3" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="302.3" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="302.3" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="302.3" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="302.3" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="302.3" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="302.3" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="302.3" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="302.3" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+</g>
+</g>
+<text x="331.6" y="77.0" font-family="TSB" font-size="27.599999999999998" fill="#c5cc9e">s</text>
+<text x="275.0" y="112.0" font-family="TSI" font-size="13.5" fill="#9a9e8c">longest possible pause</text>
+<rect x="486.0" y="22" width="219.0" height="106" rx="16" fill="#13140f" stroke="rgba(197,204,158,.14)"/>
+<g clip-path="url(#oc2)">
+<g class="r20">
+<text x="506.0" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="506.0" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="506.0" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="506.0" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="506.0" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="506.0" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="506.0" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="506.0" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="506.0" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="506.0" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="506.0" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="506.0" y="649.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="506.0" y="701.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="506.0" y="753.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+</g>
+<g class="r21">
+<text x="533.3" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="533.3" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="533.3" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="533.3" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="533.3" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="533.3" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="533.3" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="533.3" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="533.3" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="533.3" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="533.3" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="533.3" y="649.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="533.3" y="701.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="533.3" y="753.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="533.3" y="805.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="533.3" y="857.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+</g>
+</g>
+<text x="506.0" y="112.0" font-family="TSI" font-size="13.5" fill="#9a9e8c">unit tests on the core</text>
+<rect x="717.0" y="22" width="219.0" height="106" rx="16" fill="#13140f" stroke="rgba(197,204,158,.14)"/>
+<g clip-path="url(#oc3)">
+<g class="r30">
+<text x="737.0" y="77.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+<text x="737.0" y="129.0" font-family="TSB" font-size="46" fill="#f1f2e8">1</text>
+<text x="737.0" y="181.0" font-family="TSB" font-size="46" fill="#f1f2e8">2</text>
+<text x="737.0" y="233.0" font-family="TSB" font-size="46" fill="#f1f2e8">3</text>
+<text x="737.0" y="285.0" font-family="TSB" font-size="46" fill="#f1f2e8">4</text>
+<text x="737.0" y="337.0" font-family="TSB" font-size="46" fill="#f1f2e8">5</text>
+<text x="737.0" y="389.0" font-family="TSB" font-size="46" fill="#f1f2e8">6</text>
+<text x="737.0" y="441.0" font-family="TSB" font-size="46" fill="#f1f2e8">7</text>
+<text x="737.0" y="493.0" font-family="TSB" font-size="46" fill="#f1f2e8">8</text>
+<text x="737.0" y="545.0" font-family="TSB" font-size="46" fill="#f1f2e8">9</text>
+<text x="737.0" y="597.0" font-family="TSB" font-size="46" fill="#f1f2e8">0</text>
+</g>
+</g>
+<text x="737.0" y="112.0" font-family="TSI" font-size="13.5" fill="#9a9e8c">network requests, ever</text>
+</svg>
