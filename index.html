@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ThumbStall · Pause the reel. Play your life.</title>
+  <meta name="description" content="ThumbStall is a free, open-source Android app that puts a short breathing pause in front of the apps you doomscroll. No internet permission, no account, no tracking." />
+  <meta name="theme-color" content="#13140F" />
+  <link rel="icon" type="image/svg+xml" href="site/img/mark.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="site/img/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="site/img/icon-192.png" />
+  <link rel="apple-touch-icon" href="site/img/icon-180.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ThumbStall · Pause the reel. Play your life." />
+  <meta property="og:description" content="A breath between your thumb and the feed. Free, open-source, fully offline anti-doomscrolling for Android." />
+  <meta property="og:url" content="https://suriya4code.github.io/ThumbStall/" />
+  <meta property="og:image" content="https://suriya4code.github.io/ThumbStall/site/img/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://suriya4code.github.io/ThumbStall/site/img/og-card.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site/style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="ThumbStall home">
+      <img src="site/img/mark.svg" alt="" width="30" height="30" />
+      <span>ThumbStall</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#try">Try a pause</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#install">Install</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm" href="https://github.com/suriya4code/ThumbStall" rel="noopener">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <span>View on GitHub</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ───────────── HERO ───────────── -->
+    <section class="hero">
+      <canvas id="feed" aria-hidden="true"></canvas>
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="dot"></span> Android · Free &amp; open source · GPL&#8209;3.0</p>
+        <h1>Stall the scroll.<br /><em>Keep your thumb.</em></h1>
+        <p class="lede">ThumbStall slips a few seconds of breathing room between your thumb and the apps you doomscroll. Most opens happen on autopilot. A short pause is enough to notice, and closing is always one tap.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://github.com/suriya4code/ThumbStall/releases/latest" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1ZM5 19h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg>
+            Download the APK
+          </a>
+          <button class="btn btn-ghost" id="stallToggle" type="button" aria-pressed="false">
+            <svg class="pp" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect class="bar" x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect class="bar" x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><path class="play" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg>
+            <span>Stall the feed</span>
+          </button>
+        </div>
+        <ul class="badges">
+          <li>No INTERNET permission</li><li>No account</li><li>No analytics</li><li>Android 8+</li>
+        </ul>
+      </div>
+      <div class="breath-hud" id="breathHud" aria-hidden="true">
+        <b id="hudCount">8</b><span id="hudWord">breathe in</span>
+      </div>
+      <a class="scroll-hint" href="#try" aria-label="Scroll to the pause demo"><span></span></a>
+    </section>
+
+    <!-- ───────────── MARQUEE ───────────── -->
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        <span>Pause the reel</span><i></i><span>Play your life</span><i></i><span>Breathe in</span><i></i><span>Breathe out</span><i></i><span>Still want to scroll?</span><i></i>
+        <span>Pause the reel</span><i></i><span>Play your life</span><i></i><span>Breathe in</span><i></i><span>Breathe out</span><i></i><span>Still want to scroll?</span><i></i>
+      </div>
+    </div>
+
+    <!-- ───────────── TRY IT ───────────── -->
+    <section class="try" id="try">
+      <div class="section-head reveal">
+        <p class="kicker">Try a pause</p>
+        <h2>This is what your thumb meets <em>first.</em></h2>
+        <p class="sub">A real recreation of the pause screen, running the same escalation rule as the app's core engine. Open the app again and watch the wait grow.</p>
+      </div>
+
+      <div class="try-grid">
+        <div class="phone-stage reveal">
+          <div class="phone" id="phone" data-tilt>
+            <div class="phone-notch"></div>
+            <div class="pause-screen" id="pauseScreen">
+              <div class="ps-top">
+                <div class="ps-app"><span class="ps-ico" id="psIco">I</span><div><b id="psName">Instagram</b><small id="psNth">1st open today</small></div></div>
+                <span class="ps-brand">ThumbStall</span>
+              </div>
+              <div class="ps-breath" id="psBreath">
+                <i class="r3"></i><i class="r2"></i>
+                <div class="r1"><b id="psCount">8</b><small id="psWord">breathe in</small></div>
+              </div>
+              <h3 class="ps-q">Still want to scroll?</h3>
+              <p class="ps-p">Take one slow breath. If you open it, pick how long first.</p>
+              <p class="ps-avail" id="psAvail">Open for · available in 8s</p>
+              <div class="ps-chips">
+                <button type="button" data-min="5" disabled>5 min</button>
+                <button type="button" data-min="10" disabled>10 min</button>
+                <button type="button" data-min="15" disabled>15 min</button>
+              </div>
+              <button class="ps-close" type="button" id="psClose">Close Instagram</button>
+              <p class="ps-foot" id="psFoot">You closed it instead 0 times this week</p>
+              <div class="ps-toast" id="psToast" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls reveal">
+          <div class="ctl">
+            <label>Intensity</label>
+            <div class="seg" id="intensity" role="radiogroup" aria-label="Intensity">
+              <button type="button" role="radio" aria-checked="false" data-base="5">Gentle<small>5s</small></button>
+              <button type="button" role="radio" aria-checked="true" data-base="8" class="on">Balanced<small>8s</small></button>
+              <button type="button" role="radio" aria-checked="false" data-base="15">Focused<small>15s</small></button>
+            </div>
+          </div>
+          <div class="ctl">
+            <label>Distracting app</label>
+            <div class="seg apps" id="appPick" role="radiogroup" aria-label="App">
+              <button type="button" role="radio" aria-checked="true" class="on" data-app="Instagram">Instagram</button>
+              <button type="button" role="radio" aria-checked="false" data-app="YouTube">YouTube</button>
+              <button type="button" role="radio" aria-checked="false" data-app="TikTok">TikTok</button>
+              <button type="button" role="radio" aria-checked="false" data-app="Reddit">Reddit</button>
+            </div>
+          </div>
+          <div class="ctl">
+            <label>Escalation within one hour</label>
+            <div class="ladder" id="ladder" aria-hidden="true"></div>
+            <p class="formula"><code>pause = min(base + 5s × repeats, 30s)</code></p>
+          </div>
+          <div class="ctl-row">
+            <button class="btn btn-primary" type="button" id="openAgain">Open it again</button>
+            <button class="btn btn-ghost" type="button" id="resetDemo">Reset hour</button>
+          </div>
+          <div class="reclaimed">
+            <div><b id="statClosed">0</b><span>times you closed it</span></div>
+            <div><b id="statOpens">1</b><span>openings this hour</span></div>
+            <div><b id="statWait">8s</b><span>next pause</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── FEATURES ───────────── -->
+    <section class="features" id="features">
+      <div class="section-head reveal">
+        <p class="kicker">Friction, not punishment</p>
+        <h2>No blocks. No locks. Just a <em>moment</em> to choose.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><h3>Breathing pause</h3><p>A calm countdown before any app you pick. Breathe in for four seconds, out for four.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 19h4v-5H4zM10 19h4V9h-4zM16 19h4V4h-4z"/></svg></span><h3>Escalating delays</h3><p>Repeat opens within an hour wait five seconds longer each time, capped at thirty.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span><h3>Session budget</h3><p>Really need it? Grant yourself 5, 10 or 15 minutes, and that app opens freely until it runs out.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg></span><h3>Snooze</h3><p>Fifteen minutes, an hour, or until tonight. Protection switches itself back on, so you don't have to remember.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/><circle cx="12" cy="12" r="9"/></svg></span><h3>Costly override</h3><p>Turning it off asks for a reason and a 24&#8209;second wait. Enough to beat the impulse, never a trap.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1Z"/></svg></span><h3>Essentials allowlist</h3><p>Dialer, messages and maps are never paused, even if you add them by mistake.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg></span><h3>Positive stats</h3><p>See time reclaimed and how often you closed instead. No streaks to lose, no shame metrics.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 7h4v3h-4z"/></svg></span><h3>OEM battery guide</h3><p>Brand&#8209;specific steps that stop aggressive battery savers from killing protection, plus a health banner if it ever does.</p></article>
+        <article class="card reveal" data-tilt><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 21 12a10.6 10.6 0 0 1-2.6 3.3M6.3 6.3A10.5 10.5 0 0 0 3 12a10 10 0 0 0 13.7 5.7"/></svg></span><h3>Fully offline</h3><p>No INTERNET permission at all. No account, no cloud, no analytics, no crash reports.</p></article>
+      </div>
+    </section>
+
+    <!-- ───────────── HOW IT WORKS ───────────── -->
+    <section class="how" id="how">
+      <div class="section-head reveal">
+        <p class="kicker">Anatomy of a pause</p>
+        <h2>From a tap to a <em>breath,</em> in under a second.</h2>
+        <p class="sub">A foreground service watches which app comes to the front. Every decision after that is made by a pure Kotlin rules engine with no Android dependencies, tested on the JVM.</p>
+      </div>
+      <ol class="flow reveal" id="flow">
+        <li><span class="step">01</span><h4>Notice</h4><p><code>UsageStatsManager</code> is polled every 900&nbsp;ms for the newest foreground app. Detection fails open.</p></li>
+        <li><span class="step">02</span><h4>Let essentials through</h4><p>Dialer, SMS and maps always pass, even if they were picked by mistake.</p></li>
+        <li><span class="step">03</span><h4>Respect your choices</h4><p>Not a target, snoozed, or inside a session budget? Nothing happens.</p></li>
+        <li><span class="step">04</span><h4>Gate the overlay</h4><p><code>OverlayGate</code> blocks launch loops with a monotonic 1&nbsp;s cooldown per app.</p></li>
+        <li><span class="step">05</span><h4>Escalate, then breathe</h4><p><code>PauseRules</code> adds 5&nbsp;s per repeat open in the hour, capped at 30&nbsp;s. The pause screen appears.</p></li>
+      </ol>
+      <div class="facts">
+        <div class="fact reveal"><b data-count="900" data-suffix="ms">0</b><span>polling interval</span></div>
+        <div class="fact reveal"><b data-count="30" data-suffix="s">0</b><span>longest possible pause</span></div>
+        <div class="fact reveal"><b data-count="35">0</b><span>unit tests on the core</span></div>
+        <div class="fact reveal"><b data-count="0">0</b><span>network requests, ever</span></div>
+      </div>
+      <div class="arch reveal">
+        <div class="arch-col">
+          <p class="arch-h"><code>:core</code> &nbsp;pure Kotlin</p>
+          <ul><li>PauseRules</li><li>OverlayGate</li><li>OpenTracker</li><li>BudgetTracker</li><li>SnoozeState</li><li>StatsWindows</li></ul>
+        </div>
+        <div class="arch-link" aria-hidden="true"><span></span></div>
+        <div class="arch-col">
+          <p class="arch-h"><code>:app</code> &nbsp;Android</p>
+          <ul><li>MonitorService</li><li>ForegroundPoller</li><li>PauseActivity</li><li>Compose UI</li><li>Room database</li><li>BootReceiver</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── PRIVACY ───────────── -->
+    <section class="privacy" id="privacy">
+      <div class="section-head reveal">
+        <p class="kicker">Nothing leaves your phone</p>
+        <h2>The strongest privacy policy is a <em>missing</em> permission.</h2>
+      </div>
+      <div class="manifest reveal" role="img" aria-label="AndroidManifest permissions: usage stats, overlay, foreground service, notifications, boot completed and exact alarms. INTERNET is not requested.">
+        <div class="manifest-bar"><i></i><i></i><i></i><span>AndroidManifest.xml</span></div>
+        <pre><code><span class="c">&lt;!-- everything ThumbStall asks for, and why --&gt;</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"PACKAGE_USAGE_STATS"</span><span class="t">/&gt;</span>         <span class="c">which app just opened</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"SYSTEM_ALERT_WINDOW"</span><span class="t">/&gt;</span>         <span class="c">show the pause on top</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"FOREGROUND_SERVICE"</span><span class="t">/&gt;</span>          <span class="c">keep watching reliably</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"POST_NOTIFICATIONS"</span><span class="t">/&gt;</span>          <span class="c">"protection is on"</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"RECEIVE_BOOT_COMPLETED"</span><span class="t">/&gt;</span>      <span class="c">restart after reboot</span>
+<span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"SCHEDULE_EXACT_ALARM"</span><span class="t">/&gt;</span>        <span class="c">end a snooze on time</span>
+<span class="x"><span class="t">&lt;uses-permission</span> <span class="a">name</span>=<span class="s">"INTERNET"</span><span class="t">/&gt;</span></span>                    <span class="no">never requested</span></code></pre>
+      </div>
+      <ul class="trust reveal">
+        <li><b>No internet</b><span>The app physically cannot send data anywhere.</span></li>
+        <li><b>No account</b><span>No sign&#8209;up, no login, no cloud sync.</span></li>
+        <li><b>No tracking</b><span>No analytics, telemetry or crash reporting.</span></li>
+        <li><b>Open source</b><span>GPL&#8209;3.0. Read every line that runs on your phone.</span></li>
+      </ul>
+    </section>
+
+    <!-- ───────────── SCREENS ───────────── -->
+    <section class="screens" id="screens">
+      <div class="section-head reveal">
+        <p class="kicker">Designed to be calm</p>
+        <h2>Olive, cream and a lot of <em>quiet.</em></h2>
+        <p class="sub">From the ThumbStall design set. Drag to spin.</p>
+      </div>
+      <div class="carousel reveal" id="carousel" aria-label="Design screens">
+        <div class="ring" id="ring">
+          <figure><img src="site/img/04-pause-screen.webp" alt="Pause screen: breathing countdown asking Still want to scroll?" loading="lazy" width="488" height="1055" /><figcaption>The pause</figcaption></figure>
+          <figure><img src="site/img/01-onboarding-intensity.webp" alt="Onboarding: choose Gentle, Balanced or Focused" loading="lazy" width="488" height="1055" /><figcaption>Pick an intensity</figcaption></figure>
+          <figure><img src="site/img/02-onboarding-permissions.webp" alt="Onboarding: what ThumbStall needs, and why" loading="lazy" width="488" height="1055" /><figcaption>Permissions, explained</figcaption></figure>
+          <figure><img src="site/img/06-snooze-sheet.webp" alt="Snooze sheet: 15 minutes, 1 hour, until tonight, or turn off with a reason" loading="lazy" width="488" height="1055" /><figcaption>Snooze, or a costly off</figcaption></figure>
+          <figure><img src="site/img/04-pause-screen.webp" alt="" loading="lazy" width="488" height="1055" /><figcaption>The pause</figcaption></figure>
+          <figure><img src="site/img/01-onboarding-intensity.webp" alt="" loading="lazy" width="488" height="1055" /><figcaption>Pick an intensity</figcaption></figure>
+          <figure><img src="site/img/02-onboarding-permissions.webp" alt="" loading="lazy" width="488" height="1055" /><figcaption>Permissions, explained</figcaption></figure>
+          <figure><img src="site/img/06-snooze-sheet.webp" alt="" loading="lazy" width="488" height="1055" /><figcaption>Snooze, or a costly off</figcaption></figure>
+        </div>
+      </div>
+      <p class="caption reveal">Some design screens preview roadmap features such as feed filtering, which are not in v0.1 yet.</p>
+    </section>
+
+    <!-- ───────────── ROADMAP ───────────── -->
+    <section class="roadmap" id="roadmap">
+      <div class="section-head reveal">
+        <p class="kicker">Where it's going</p>
+        <h2>v0.1 is out. The reel keeps <em>turning.</em></h2>
+      </div>
+      <div class="road reveal">
+        <div class="lane done">
+          <p class="tag">v0.1 · shipped</p>
+          <ul><li>Pause screen with breathing countdown</li><li>App picker, escalation, session budget</li><li>Snooze and costly override</li><li>Stats dashboard</li><li>Onboarding flow</li></ul>
+        </div>
+        <div class="lane next">
+          <p class="tag">Next</p>
+          <ul><li>Feed blocking for Reels and Shorts</li><li>Daily time limits</li><li>Schedules for work hours and bedtime</li><li>F&#8209;Droid and IzzyOnDroid</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── INSTALL ───────────── -->
+    <section class="install" id="install">
+      <div class="section-head reveal">
+        <p class="kicker">Get it</p>
+        <h2>Two minutes to a <em>calmer</em> thumb.</h2>
+      </div>
+      <div class="install-grid">
+        <div class="panel reveal">
+          <h3>Install the APK</h3>
+          <ol class="steps">
+            <li>Download <code>app-foss-release.apk</code> from <a href="https://github.com/suriya4code/ThumbStall/releases/latest">Releases</a>.</li>
+            <li>Allow installs from your browser or file manager.</li>
+            <li>On Android 13+, open <b>Settings → Apps → ThumbStall → ⋮ → Allow restricted settings</b> before granting Usage Access.</li>
+          </ol>
+          <a class="btn btn-primary" href="https://github.com/suriya4code/ThumbStall/releases/latest">Latest release</a>
+        </div>
+        <div class="panel reveal">
+          <h3>Build from source</h3>
+          <div class="code">
+            <button class="copy" type="button" data-copy="git clone https://github.com/suriya4code/ThumbStall.git&#10;cd ThumbStall&#10;./gradlew assembleFossDebug">Copy</button>
+<pre><code><span class="c"># JDK 17+ and Android SDK 36</span>
+git clone https://github.com/suriya4code/ThumbStall.git
+cd ThumbStall
+./gradlew assembleFossDebug
+<span class="c"># → app/build/outputs/apk/foss/debug/</span></code></pre>
+          </div>
+          <p class="small">Run the rules engine tests with <code>./gradlew :core:test</code>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="foot-mark">
+      <img src="site/img/mark.svg" alt="" width="44" height="44" />
+      <div><b>ThumbStall</b><span>Pause the reel. Play your life!</span></div>
+    </div>
+    <p>Free and open source under GPL&#8209;3.0 · Made by <a href="https://github.com/suriya4code">@suriya4code</a> · <a href="https://github.com/suriya4code/ThumbStall/blob/main/CONTRIBUTING.md">Contribute</a></p>
+  </footer>
+
+  <script src="site/main.js" defer></script>
+</body>
+</html>
